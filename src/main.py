@@ -8,10 +8,16 @@ app = Flask(__name__)
 app.register_blueprint(admin_bp)
 
 # Configuración de la base de datos
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///starwars.db'
+import os
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///starwars.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
+
+from flask_migrate import Migrate
+
+migrate = Migrate(app, db)
+
 
 # Crear las tablas
 with app.app_context():
@@ -92,4 +98,5 @@ def get_feature():
     return "The app is up!"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))  # Obtiene el puerto asignado
+    app.run(host='0.0.0.0', port=port, debug=False)
