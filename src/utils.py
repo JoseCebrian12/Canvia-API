@@ -1,4 +1,4 @@
-from models import StarWarsPlanet, db
+from src.models import StarWarsPlanet, db
 import requests
 
 def fetch_from_swapi(resource, id):

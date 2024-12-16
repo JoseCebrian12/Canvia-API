@@ -1,5 +1,5 @@
 from flask import Blueprint
-from models import db
+from src.models import db
 
 admin_bp = Blueprint("admin", __name__)
 

@@ -1,8 +1,8 @@
 from flask import Flask, jsonify, request
-from models import StarWarsStarship, StarWarsFilm, StarWarsPerson, StarWarsSpecies, StarWarsPlanet, StarWarsVehicle, db
+from src.models import StarWarsStarship, StarWarsFilm, StarWarsPerson, StarWarsSpecies, StarWarsPlanet, StarWarsVehicle, db
 import requests
-from admin import admin_bp
-from utils import fetch_from_swapi, get_or_create_planet
+from src.admin import admin_bp
+from src.utils import fetch_from_swapi, get_or_create_planet
 
 app = Flask(__name__)
 app.register_blueprint(admin_bp)
